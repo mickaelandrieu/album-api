@@ -20,6 +20,9 @@
     },
     "require": {
         "php": ">=7.0",
+        "ext-apcu": "*",
+        "incenteev/composer-parameter-handler": "^2.0",
+        "dunglas/api-platform-heroku": "^1.0@dev",
         "api-platform/core": "^2.1",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
@@ -41,19 +44,18 @@
         "behat/mink-extension": "^2.2",
         "behat/symfony2-extension": "^2.1",
         "behatch/contexts": "^2.5",
-        "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0",
-        "dunglas/api-platform-heroku": "^1.0@dev"
+        "symfony/phpunit-bridge": "^3.0"
     },
     "scripts": {
         "symfony-scripts": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "pre-install-cmd": [
-            "Dunglas\\Heroku\\Database::createParameters"
+            "AppBundle\\Heroku\\Database::createParameters"
         ],
         "post-install-cmd": [
             "@symfony-scripts"
@@ -78,6 +80,5 @@
         "branch-alias": {
             "dev-master": "2.1-dev"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }

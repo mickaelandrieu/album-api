@@ -14,11 +14,14 @@
     }
   },
   "addons": [
-    "heroku-postgresql"
+    "heroku-postgresql:hobby-dev"
   ],
   "buildpacks": [
     {
       "url": "https://github.com/heroku/heroku-buildpack-php"
     }
-  ]
+  ],
+  "scripts": {
+    "postdeploy": "php bin/console doctrine:schema:create"
+  }
 }
